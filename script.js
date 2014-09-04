@@ -31,7 +31,6 @@ $(document).ready(function() {
 	});
 	
 	$("#trail").click(function() {
-		clear();
 		$(".squares").remove();
 		buildGrid(size);
 		$(".squares").hover(function() {
