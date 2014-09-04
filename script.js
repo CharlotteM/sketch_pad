@@ -97,16 +97,6 @@ function checkSize() {
 	}
 };
 
-/*function lessOpaque(square) {
-	var opacity = square.css("opacity");
-	var nextOpacity = opacity - 0.1;
-	if (nextOpacity > 0) {
-		square.css("opacity", nextOpacity);
-	} else {
-		square.css("opacity", 0);
-	}
-};*/
-	
 
 	
 	
