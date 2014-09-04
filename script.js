@@ -3,10 +3,7 @@ var size = 16;
 $(document).ready(function() {
 
 	buildGrid(size);
-	
-	$(".squares").mouseenter(function() {
-		$(this).css("background-color", "white");
-	});
+	defaultColor();	
 	
 	$("#clear").click(function() {
 		clear();
@@ -17,35 +14,6 @@ $(document).ready(function() {
 		buildGrid(size);
 		$(".squares").hover(function() {
 			$(this).css("background-color", randomColor());
-		});
-	});
-	
-	$("#rows").click(function() {
-		checkSize();
-		$(".squares").remove();
-		buildGrid(size);
-		$(".squares").mouseenter(function() {
-			$(this).css("background-color", "white");
-		});
-	});
-	
-	$("#original").click(function() {
-		$(".squares").remove();
-		size = 16
-		buildGrid(size);
-		$(".squares").mouseenter(function() {
-			$(this).css("background-color", "white");
-		});
-	});
-	
-	$("#trail").click(function() {
-		clear();
-		$(".squares").remove();
-		buildGrid(size);
-		$(".squares").hover(function() {
-			$(this).css("opacity", 0);
-		}, function() {
-			$(this).fadeTo("fast", 1);
 		});
 	});
 	
@@ -62,6 +30,30 @@ $(document).ready(function() {
 		});
 	});
 	
+	$("#trail").click(function() {
+		clear();
+		$(".squares").remove();
+		buildGrid(size);
+		$(".squares").hover(function() {
+			$(this).css("opacity", 0);
+		}, function() {
+			$(this).fadeTo("fast", 1);
+		});
+	});
+	
+	$("#rows").click(function() {
+		checkSize();
+		$(".squares").remove();
+		buildGrid(size);
+		defaultColor();
+	});
+	
+	$("#original").click(function() {
+		$(".squares").remove();
+		buildGrid(16);
+		defaultColor();
+	});
+	
 });
 
 function buildGrid(size) {
@@ -76,16 +68,22 @@ function buildGrid(size) {
 	$(".squares").css("height", squareSize);
 };
 
-function randomColor() {
-	var red = Math.floor(Math.random() * 256);
-	var green = Math.floor(Math.random() * 256);
-	var blue = Math.floor(Math.random() * 256);
-	return "rgb(" + red + "," + green + "," + blue + ")";
+function defaultColor() {
+	$(".squares").mouseenter(function() {
+		$(this).css("background-color", "white");
+	});
 };
 
 function clear() {
 	$(".squares").css("background-color", "#3333b5");
 	$(".squares").css("opacity", 1);
+};
+
+function randomColor() {
+	var red = Math.floor(Math.random() * 256);
+	var green = Math.floor(Math.random() * 256);
+	var blue = Math.floor(Math.random() * 256);
+	return "rgb(" + red + "," + green + "," + blue + ")";
 };
 
 function checkSize() {
