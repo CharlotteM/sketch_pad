@@ -19,6 +19,7 @@ button {
 }
 
 .squares {
+  background-color: #3333b5;
   border: 1px solid black;
   float: left;
 }

@@ -3,14 +3,18 @@ var size = 16;
 $(document).ready(function() {
 
 	buildGrid(size);
-	defaultColor();	
+	
+	$(".squares").mouseenter(function() {
+		$(this).css("background-color", "white");
+	});
 	
 	$("#clear").click(function() {
 		clear();
 	});
 	
 	$("#random").click(function() {
-		clear();
+		$(".squares").remove();
+		buildGrid(size);
 		$(".squares").hover(function() {
 			$(this).css("background-color", randomColor());
 		});
@@ -20,13 +24,42 @@ $(document).ready(function() {
 		checkSize();
 		$(".squares").remove();
 		buildGrid(size);
-		defaultColor();
+		$(".squares").mouseenter(function() {
+			$(this).css("background-color", "white");
+		});
 	});
 	
 	$("#original").click(function() {
 		$(".squares").remove();
-		buildGrid(16);
-		defaultColor();
+		size = 16
+		buildGrid(size);
+		$(".squares").mouseenter(function() {
+			$(this).css("background-color", "white");
+		});
+	});
+	
+	$("#trail").click(function() {
+		clear();
+		$(".squares").remove();
+		buildGrid(size);
+		$(".squares").hover(function() {
+			$(this).css("opacity", 0);
+		}, function() {
+			$(this).fadeTo("fast", 1);
+		});
+	});
+	
+	$("#opacity").click(function() {
+		clear();
+		$(".squares").off();
+		$(".squares").mouseenter(function() {
+			var opacity = $(this).css("opacity");
+			if (opacity > 0.1) {
+				$(this).css("opacity", opacity - 0.1);
+			} else {
+				$(this).css("opacity", 0);
+			}
+		});
 	});
 	
 });
@@ -51,13 +84,8 @@ function randomColor() {
 };
 
 function clear() {
-	$(".squares").css("background-color", "white");
-};
-
-function defaultColor() {
-	$(".squares").hover(function() {
-		$(this).css("background-color", "#3333b5");
-	});
+	$(".squares").css("background-color", "#3333b5");
+	$(".squares").css("opacity", 1);
 };
 
 function checkSize() {
@@ -68,6 +96,17 @@ function checkSize() {
 		checkSize();
 	}
 };
+
+/*function lessOpaque(square) {
+	var opacity = square.css("opacity");
+	var nextOpacity = opacity - 0.1;
+	if (nextOpacity > 0) {
+		square.css("opacity", nextOpacity);
+	} else {
+		square.css("opacity", 0);
+	}
+};*/
+	
 
 	
 	

@@ -1,3 +1,3 @@
 sketch_pad
 ==========
-A simple scratchpad.
+A scratchpad.
